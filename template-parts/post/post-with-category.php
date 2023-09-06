@@ -28,6 +28,7 @@ if($secondary_query->have_posts()):
         endwhile;
     echo "</ul>";
 endif;
+
 wp_reset_postdata();
 
 $args = array(
