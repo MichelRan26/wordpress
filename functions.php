@@ -11,3 +11,7 @@ function add_theme_scripts()
     wp_enqueue_style('bootstrap',STYLE_DIRECTORY_PATH.'/bootstrap.min.css');
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
+
+function sayHello(){
+    echo "Hello Michel";
+}

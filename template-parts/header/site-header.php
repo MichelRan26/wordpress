@@ -1,4 +1,10 @@
 <?php
+/**
+ * 
+ */
+?>
+<body class = "<?php body_class()?>">
+    <header>
 
-get_template_part('template-parts/header/site', 'logo');
-get_template_part('template-parts/header/site', 'nav');
+    </header>
+    <main id ="main" class = "site-main container">
