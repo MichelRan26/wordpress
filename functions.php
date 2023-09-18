@@ -17,7 +17,7 @@ add_action('wp_enqueue_scripts', 'add_theme_scripts');
 function my_admin_notices(){
     echo "<h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h2>";
 }
-add_action('admin_notices','my_admin_notices');
+//add_action('admin_notices','my_admin_notices');
 
 function my_options_menu(){
     if(!current_user_can('manage_options')){
@@ -33,7 +33,7 @@ function add_my_menu(){
      * add_options_page($page_title,$menu_title,$capability,$menu_slug,$callback,$icon_url,$position)
      */
     $hook_suffix = add_options_page( 'My options', 'My menu', 'manage_options', 'my-unique-identifier','my_options_menu','dashicons-admin-appearance',0);
-    add_action('load-'.$hook_suffix,'my_load_function');
+    //add_action('load-'.$hook_suffix,'my_load_function');
 }
 add_action('admin_menu','add_my_menu');
 
@@ -155,4 +155,37 @@ function set_custom_logo(){
 }
 add_action('after_setup_theme','set_custom_logo');
 
+/* Register sidebars in wordpress */
+function my_register_sidebars(){
+    /*Register the 'primary' sidebar. */
+    register_sidebar(
+        array(
+            'id' => 'primary',
+            'name' => __('Primary Sidebar','sidebar-widget'),
+            'description' => __('A short description of the sidebar. '),
+            'before_widget' => '<div id = "%1$s" class = "widget %2$s">',
+            'after_widget' => '</div>',
+            'before_title' => '<h3 class = "widget-title">',
+            'after_title' => '</h3>',
+        )
+    );
+}
+add_action('widgets_init','my_register_sidebars');
 
+// Widget register
+require_once('widget/widget.php');
+function wpdocs_register_widget(){
+    register_widget('My_Widget');
+}
+add_action('widgets_init','wpdocs_register_widget');
+
+/* Register Menus*/
+function register_my_menus() {
+    register_nav_menus(
+      array(
+        'header-menu' => __( 'Header Menu' ),
+        'extra-menu' => __( 'Extra Menu' )
+       )
+     );
+}
+add_action( 'init', 'register_my_menus' );
