@@ -189,3 +189,24 @@ function register_my_menus() {
      );
 }
 add_action( 'init', 'register_my_menus' );
+function your_themes_pagination() {
+	global $wp_query;
+	echo posts_nav_link();
+}
+
+/**WEBP */
+
+function set_sub_size_to_wepb($formats){
+    var_dump($formats);
+    die('Mort');
+}
+add_filter('image_editor_output_format','set_sub_size_to_wepb');
+
+
+function limit_the_excerpt($length){
+    return 4;
+}
+add_filter( 'excerpt_length', 'limit_the_excerpt', 9999);
+
+/**Enable featured image */
+add_theme_support('post-thumbnails');

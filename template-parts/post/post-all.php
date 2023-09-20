@@ -15,4 +15,4 @@ rewind_posts();
 
 while(have_posts()):the_post();
     the_post_thumbnail();
-endwhile;
+endwhile; 

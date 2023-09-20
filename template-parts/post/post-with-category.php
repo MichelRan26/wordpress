@@ -18,8 +18,12 @@ wp_reset_postdata(); // reset post data
 /**
  * The secondray query. Note that we can use category name
  */
-$secondary_query = new WP_Query('category_name=categorie-2');
-
+$args = array(
+    'post_type'=> 'post',
+    'post_status' => 'publish',
+    'posts_per_page' => 3
+);
+$secondary_query = new WP_Query($args);
 if($secondary_query->have_posts()):
     echo "<ul style = 'background-color:#AEC3AE;padding:40px 0px'>";
         echo "<p>Liste des postes avec catégorie 2</p>";
@@ -28,7 +32,6 @@ if($secondary_query->have_posts()):
         endwhile;
     echo "</ul>";
 endif;
-
 wp_reset_postdata();
 
 $args = array(
